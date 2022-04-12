@@ -169,7 +169,7 @@ function EditService({ history, location }) {
             <div className="col-lg-12">
               <div className="form-outline form-white">
                 <button
-                  className="rounded w-100 btn btn-primary"
+                  className="rounded w-100 btn bg-green btn-primary"
                   onClick={(e) => handleSubmit(e)}
                 >
                   Update

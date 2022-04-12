@@ -125,6 +125,7 @@ const AllPayments = ({ history }) => {
                 <th>Client Email</th>
                 <th>Country Code</th>
                 <th>Service Charge</th>
+                <th>Type</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -145,6 +146,7 @@ const AllPayments = ({ history }) => {
                         <td>{p.payment.payer.email}</td>
                         <td>{p.payment.payer.address.country_code}</td>
                         <td>${p.payment.payment.amount}</td>
+                        <td>{p.payment_type}</td>
                         <td>{p.payment.status}</td>
                         <td>
                           <span onClick={() => handlePaymentDetails(p)}>
@@ -170,6 +172,7 @@ const AllPayments = ({ history }) => {
                         <td>{p.payment.payer.email}</td>
                         <td>{p.payment.payer.address.country_code}</td>
                         <td>${p.payment.payment.amount}</td>
+                        <td>{p.payment_type}</td>
                         <td>{p.payment.status}</td>
                         <td>
                           <span onClick={() => handlePaymentDetails(p)}>

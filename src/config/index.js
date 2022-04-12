@@ -2,9 +2,13 @@ import axios from 'axios';
 import TokenService from '../libs/token'
 
 export const isLocalHost = Boolean(window.location.hostname === "localhost" || window.location.hostname === "[::1]" || window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/))
- 
+const SERVER_URL = isLocalHost ? 'http://localhost:5000' : 'https://api2.ficoven.com';  
+export const verifyVoguePayUrl = `${SERVER_URL}/api/verify-voguepay`;
+
+export const APP_URL = isLocalHost ? 'http://localhost:3000' : 'https://portal.ficoven.com';
+
 const Axios = axios.create({
-    baseURL: isLocalHost ? 'http://localhost:5000/api' : 'https://api2.ficoven.com/api',
+    baseURL:  `${SERVER_URL}/api`,
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
@@ -52,6 +56,5 @@ const Axios = axios.create({
       return Promise.reject(err);
     }
   );
-  
-
   export default Axios
+

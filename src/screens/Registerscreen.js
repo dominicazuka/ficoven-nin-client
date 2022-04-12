@@ -239,7 +239,7 @@ function Registerscreen() {
 
             {loading && <Loader />}
             <button
-              className="w-100 rounded btn btn-primary mt-3"
+              className="w-100 rounded btn bg-green btn-primary mt-3"
               onClick={(e) => register(e)}
             >
               Register

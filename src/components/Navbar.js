@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../contexts/AuthContext';
 import { logout } from '../libs/auth';
 import { isSuperAdmin, lowerCase } from '../utils';
-import ficovenlogo from '../components/logo/ficovenlogo.png';
+import ficovenlogo from '../assets/logo/ficovenlogo.png';
 
 function Navbar() {
     const {

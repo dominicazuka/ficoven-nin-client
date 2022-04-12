@@ -209,7 +209,7 @@ function Profilescreen() {
             <div className="form-outline form-white">
               {loading && <Loader />}
               <button
-                className="rounded w-100 btn btn-primary"
+                className="rounded w-100 btn bg-green btn-primary"
                 onClick={(e) => handleEmailPhoneNumberUpdate(e)}
               >
                 Update
@@ -257,7 +257,7 @@ function Profilescreen() {
             <div className="form-outline form-white">
               {loading2 && <Loader />}
               <button
-                className="rounded w-100 btn btn-primary"
+                className="rounded w-100 btn bg-green btn-primary"
                 onClick={(e) => handlePasswordUpdate(e)}
               >
                 Update

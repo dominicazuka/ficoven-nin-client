@@ -214,7 +214,7 @@ function EditUserProfile({history, location}) {
             <div className="form-outline form-white">
               {loading && <Loader />}
               <button
-                className="rounded w-100 btn btn-primary"
+                className="rounded w-100 btn bg-green btn-primary"
                 onClick={(e) => handleEditUser(e)}
               >
                 Update

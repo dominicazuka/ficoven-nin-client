@@ -8,6 +8,8 @@ import Axios from "../config";
 import PaypalPaymentButton from "../components/PaypalPaymentButton";
 import { Helmet } from "react-helmet";
 import VerifyBookingModal from "../components/VerifyPaymentModal";
+import VoguePayButton from "../components/VoguePayButton";
+import {verifyVoguePayment} from "../libs/payment";
 
 function Bookingscreen({ match, location, history }) {
   const userData = location.state;
@@ -95,7 +97,7 @@ function Bookingscreen({ match, location, history }) {
     setIsModalVisible(!isModalVisible);
   };
 
-  const getResponse = async (payload) => {
+  const getPaypalResponse = async (payload) => {
     try {
       const obj = {
         id: payload.id,
@@ -133,6 +135,18 @@ function Bookingscreen({ match, location, history }) {
       swal("Please try again", error.message, "error");
     }
   };
+
+  const getVoguepayResponse = async (payload) => {
+    try {
+      showModal();
+      const result = await verifyVoguePayment(payload);
+      setIsModalVisible(false);
+      swal(result.error ? "Booking Failed" : "Booking Successful", result.msg, result.error ? "error" : "success");
+      return history.push("/");
+    } catch (error) {
+      swal("Please try again", error.msg, "error");
+    }
+  }
 
   return (
     <Card>
@@ -204,13 +218,25 @@ function Bookingscreen({ match, location, history }) {
                         <div className="col-lg-12 mb-4">
                           {isloading && <Loader />}
                           {allowPayment ? (
-                            <PaypalPaymentButton
-                              getResponse={getResponse}
-                              bookingDetails={bookingDetails}
-                            />
+                            <div className="row">
+                               <div className="col-lg-5">
+                               <PaypalPaymentButton
+                            getResponse={getPaypalResponse}
+                            bookingDetails={bookingDetails}
+                          />
+                              </div>
+                              <div className="col-lg-2">
+                                <p className="text-center mb-5">OR</p>
+                              </div>
+                              <div className="col-lg-5">
+                                <VoguePayButton
+                                getResponse={getVoguepayResponse}
+                                bookingDetails={bookingDetails}/>
+                              </div> 
+                            </div>
                           ) : (
                             <button
-                              className="rounded w-100 btn btn-primary userScreenInputs"
+                              className="rounded w-100 btn btn-primary bg-green userScreenInputs"
                               onClick={(e) => bookService(e)}
                               disabled={isloading}
                             >

@@ -416,7 +416,7 @@ function UserScreen({ setIsNext, bookingDetails, history }) {
                       <div className="d-grid gap-2 d-md-block">
                         <button
                           type="button"
-                          className="next-button btn btn-light btn-lg userScreenInputs"
+                          className="next-button btn btn-light btn-lg bg-green userScreenInputs"
                           data-mdb-ripple-color="dark"
                           onClick={handlePrevious}
                         >
@@ -425,7 +425,7 @@ function UserScreen({ setIsNext, bookingDetails, history }) {
 
                         <button
                           type="button"
-                          className="next-button1 btn btn-light btn-lg userScreenInputs"
+                          className="next-button1 btn btn-light btn-lg bg-green userScreenInputs"
                           data-mdb-ripple-color="dark"
                           onClick={(e) => handleNext(e)}
                         >

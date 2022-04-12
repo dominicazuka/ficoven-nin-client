@@ -107,7 +107,7 @@ function Loginscreen() {
             <p className="text-danger">{passwordError}</p>
             {loading && <Loader />}
             <button
-              className="rounded w-100 btn btn-primary mt-3"
+              className="rounded w-100 btn bg-green btn-primary mt-3"
               onClick={(e) => Login(e)}
             >
               Login

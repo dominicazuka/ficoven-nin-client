@@ -9,7 +9,7 @@ const PaypalPaymentButton = ({ bookingDetails, getResponse }) => {
   };
   return <PayPalScriptProvider options={initialOptions}> 
     <PayPalButtons
-      style={{ layout: "horizontal", shape:   'pill', color:   'black', label:   'pay'}}
+      style={{ layout: "horizontal", shape:   'pill', color:   'black', label:   'pay', height: 37}}
       createOrder={(data, actions) => {
         return actions.order.create({
           purchase_units: [
