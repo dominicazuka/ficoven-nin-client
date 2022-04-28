@@ -2,26 +2,14 @@ import React from 'react';
 import vouguePayPng from "../assets/images/voguePay.png";
 import { v4 as uuidv4 } from 'uuid';
 import {verifyVoguePayUrl, APP_URL} from "../config"; 
+import swal from "sweetalert";
 
 const VoguePayButton = ({getResponse, bookingDetails}) => {
 
 const userData = bookingDetails;
 
-// const payNow = async (e) => {
-//     e.preventDefault();
-//     const body = `https://voguepay.com/?p=linkToken&v_merchant_id=2817-0116360&
-//     memo=Payment for NIN Capture&total=${user.totalAmount}&merchant_ref=${uuidv4()}&
-//     notify_url=${verifyVoguePayUrl}&
-//     success_url=${APP_URL}/verify-payment?status=success&
-//     fail_url=${APP_URL}/verify-payment?status=fail&developer_code=5a61be72ab323&cur=USD`
-//     const result = await axios.post(body, {}, {
-//         withCredentials: true
-//     });
-//     console.log(result);
-// }
-
 const closedFunction = function() {
-        alert('window closed by you');
+      swal("Transaction aborted", "Transaction not completed", "error"); 
     }
 
 const successFunction = function(transaction_id) {
@@ -34,22 +22,21 @@ const successFunction = function(transaction_id) {
     }
 
 const failedFunction = function(transaction_id) {
-        alert('Transaction was not successful, Ref: '+transaction_id);
+        swal("Transaction error", "Transaction failed, kindly copy the transaction id for reference: " + transaction_id, "error"); 
     }
 
-function pay(e){
-    console.log(process.env.REACT_APP_VOGUE_PAY_MERCHANT_ID);
-    console.log(userData);
+function pay(){
+      console.log(process.env.REACT_APP_VOGUE_PAY_CUR);
       //disable-eslint-next-line
       const Voguepay = window.Voguepay;
       Voguepay.init({
-        v_merchant_id: process.env.REACT_APP_VOGUE_PAY_MERCHANT_ID, //6538-0116499
+        v_merchant_id: process.env.REACT_APP_VOGUE_PAY_MERCHANT_ID,
         total: userData.totalAmount,
         notify_url: verifyVoguePayUrl,
-        cur: 'NGN',
+        cur: process.env.REACT_APP_VOGUE_PAY_CUR,
         merchant_ref: uuidv4(),
         memo:'Payment for NIN Capture',
-        developer_code: '5a61be72ab323', //62540b4ccac20
+        developer_code: process.env.REACT_APP_VOGUE_PAY_DEVELOPER_CODE,
         items: [
           {
             name: "NIMC | FICOVEN | PANDUS POWELLS",
@@ -76,7 +63,7 @@ function pay(e){
 
   return (
     <div>
-        <button className="btn btn-dark btn-sm w-100 rounded" onClick={e=>pay(e)}>Pay with <img src={vouguePayPng} alt="VoguePay button" className="text-white" /></button>
+        <button className="btn btn-dark btn-sm w-100 rounded" onClick={()=>pay()}>Pay with <img src={vouguePayPng} alt="VoguePay button" className="text-white" /></button>
     </div>
   )
 }
